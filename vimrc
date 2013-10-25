@@ -46,7 +46,7 @@ set backspace=indent,eol,start                                    " More powerfu
 set t_Co=256                                                      " Explicitly tell vim that the terminal has 256 colors "
 set mouse=a                                                       " use mouse in all modes
 set report=0                                                      " always report number of lines changed                "
-set nowrap                                                        " dont wrap lines 不拆行
+" set nowrap                                                        " dont wrap lines 不拆行
 set scrolloff=5                                                   " 5 lines above/below cursor when scrolling
 set number                                                        " show line numbers
 set showmatch                                                     " show matching bracket (briefly jump)
@@ -55,8 +55,9 @@ set title                                                         " show file in
 set laststatus=2                                                  " use 2 lines for the status bar 总是显示状态栏
 set matchtime=2                                                   " show matching bracket for 0.2 seconds
 set matchpairs+=<:>                                               " specially for html
-set shortmess=I                                                   " 隐藏启动时的提示
-" set relativenumber                                              " 显示相对于当前行的行号
+set shortmess=atI                                                 " 隐藏启动时的提示，缩写一些command
+" set relativenumber                                                " 显示相对于当前行的行号
+
 
 " for ctags
 set tags=tags;                                                    " 自动向上寻找tags文件
@@ -122,10 +123,6 @@ map <leader>ff :call CscopeFind('f', expand('<cword>'))<CR>
 " i: Find files #including this file
 map <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
 map <leader>l :call ToggleLocationList()<CR>
-
-" a.vim script
-" F4 切换头文件和源文件
-nmap <F4> :A<CR>
 
 
 
@@ -271,10 +268,14 @@ nmap <F3> :GundoToggle<cr>
 nmap <F4> :A<CR>
 nmap <F5> :TagbarToggle<cr>
 nmap <F6> :NERDTreeToggle<cr>
-nmap <F7> :IndentGuidesToggle<cr>
+nmap <F9> :IndentGuidesToggle<cr>
 nmap <D-/> :
-nnoremap <leader>a :Ack
+nnoremap <leader>a :LAck 
 nnoremap <leader>v V`]
+
+" quick search for location-list window such as LAck & cscope
+nmap <F7> :lprevious<CR>
+nmap <F8> :lnext<CR>
 
 
 
