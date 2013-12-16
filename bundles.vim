@@ -14,7 +14,8 @@ Bundle 'brookhong/cscope.vim'
 Bundle 'szw/vim-tags'
 Bundle 'vim-scripts/a.vim'
 Bundle 'Kris2k/mark.vim'
-
+Bundle 'skroll/vim-easycolour'
+Bundle 'xtrnet/TagHighlight'
 
 "------------------
 " Code Completions
@@ -104,7 +105,7 @@ Bundle 'tpope/vim-markdown'
 "--------------
 Bundle 'vim-scripts/blackdust.vim'
 "Bundle 'rickharris/vim-blackboard'
-"Bundle 'altercation/vim-colors-solarized'
+Bundle 'altercation/vim-colors-solarized'
 "Bundle 'rickharris/vim-monokai'
 "Bundle 'tpope/vim-vividchalk'
 "Bundle 'Lokaltog/vim-distinguished'

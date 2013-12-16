@@ -13,9 +13,11 @@ syntax on
 " Vim UI
 "--------
 " color scheme
-set background=light
+" set background=light
 "color desert
 color blackdust
+set background=dark
+" color marvin
 
 " highlight current line
 " au WinLeave * set nocursorline nocursorcolumn
@@ -249,6 +251,7 @@ let g:SuperTabRetainCompletionType=2
 "
 """"""""""""""""""""""""""""""""""""""
 let g:ctrlp_map = ',,'      " 将CtrlP的快捷键设置为,,
+let g:ctrlp_by_filename = 1 " 搜索时只使用文件名，不带路径
 set wildignore+=*/tmp/*,*.so,*.o,*.a,*.obj,*.swp,*.zip,*.pyc,*.pyo,*.class,.DS_Store  " MacOSX/Linux
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
 nnoremap <Leader>. :CtrlPTag<CR>
@@ -298,6 +301,9 @@ autocmd VimEnter,ColorScheme * :hi IndentGuidesEven     guibg=green ctermbg=4
 "------------------
 " Useful Functions
 "------------------
+" convert markdown file
+nmap <Leader>md :!markdown_py % > %.html && chromium-browser %.html & <CR><CR>
+
 " easier navigation between split windows
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
@@ -338,7 +344,7 @@ nnoremap ; :
 if has("gui_running")
     color desert        " use desert in gvim
     set go=aAce         " remove toolbar
-    "set guifont=Monaco:h13
+    set guifont=Yahei\ Mono\ 12
     "set showtabline=2
     "set columns=140
     "set lines=40
