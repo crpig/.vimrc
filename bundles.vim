@@ -24,6 +24,8 @@ Bundle 'Shougo/neocomplcache'
 "Bundle 'mattn/emmet-vim'      webdevelop
 Bundle 'Raimondi/delimitMate'
 Bundle 'ervandew/supertab'
+" Bundle 'Valloric/YouCompleteMe' " Need a newer version of vim
+
 " snippets
 Bundle 'garbas/vim-snipmate'
 "Bundle 'honza/vim-snippets'

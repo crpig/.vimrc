@@ -33,7 +33,7 @@ set incsearch   " 即时显示输入的搜索字符，按ESC退回到原点
 
 " 使用空格搜索当前单词，并高亮搜索结果 nohlsearch暂时取消高亮
 set hlsearch
-nmap <Space> /<C-R>=expand("<cword>")<CR><CR>
+nmap <Space> /<C-R>=expand("<cword>")<CR><CR>N
 
 " 忽略大小写
 set ignorecase
@@ -59,7 +59,13 @@ set matchtime=2                                                   " show matchin
 set matchpairs+=<:>                                               " specially for html
 set shortmess=atI                                                 " 隐藏启动时的提示，缩写一些command
 " set relativenumber                                                " 显示相对于当前行的行号
+set autochdir                                                     " 自动切换目录为当前文件所在目录
+set foldenable                                                    " 启用所有折叠 zi可以切换
+set foldmethod=indent                                             " indent 折叠方式
+set foldlevel=99
 
+" 开关折叠选项
+nnoremap m @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 
 " for ctags
 set tags=tags;                                                    " 自动向上寻找tags文件
@@ -198,7 +204,9 @@ let NERDCompactSexyComs=1
 "
 """"""""""""""""""""""""""""""""""""""
 " powerline
-"let g:Powerline_symbols = 'fancy'
+if has("gui_running")
+    let g:Powerline_symbols = 'fancy'   " Only use in GUI
+endif
 
 
 
@@ -253,7 +261,8 @@ let g:SuperTabRetainCompletionType=2
 let g:ctrlp_map = ',,'      " 将CtrlP的快捷键设置为,,
 let g:ctrlp_by_filename = 1 " 搜索时只使用文件名，不带路径
 set wildignore+=*/tmp/*,*.so,*.o,*.a,*.obj,*.swp,*.zip,*.pyc,*.pyo,*.class,.DS_Store  " MacOSX/Linux
-let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
+let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'     " 忽略这些版本管理目录
+let g:ctrlp_root_markers = ['.git']                     " 优先寻找.git作为root目录
 nnoremap <Leader>. :CtrlPTag<CR>
 
 
@@ -303,6 +312,9 @@ autocmd VimEnter,ColorScheme * :hi IndentGuidesEven     guibg=green ctermbg=4
 "------------------
 " convert markdown file
 nmap <Leader>md :!markdown_py % > %.html && chromium-browser %.html & <CR><CR>
+
+" 常规模式下输入 cM行尾符号
+nmap cM :%s/\r$//g<CR>:noh<CR>
 
 " easier navigation between split windows
 nnoremap <c-j> <c-w>j
@@ -362,4 +374,10 @@ if has("gui_running")
     map <D-8> 8gt
     map <D-9> 9gt
     map <D-0> :tablast<CR>
+
+    " 最大化窗口
+    function Maximize_Window()
+        silent !wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz
+    endfunction
+
 endif
